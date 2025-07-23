@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TasKPro</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link rel="icon" href="clipboard-check-black-symbol_icon-icons.webp" type="image/png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+<header class="header">
+<div class="header-content">
+<div class="logo">
+<i class="fas fa-tasks"></i>
+<span>TasKPro</span>
+</div>
+<div class="header-controls">
+<button class="theme-toggle" id="themeToggle">
+<i class="fas fa-moon"></i>
+</button>
+</div>
+</div>
+</header>
+
+
+<div class="stats-grid">
+<div class="stat-card">
+<div class="stat-content">
+<div class="stat-info">
+<h3 id="totalTasks">0</h3>
+<p>Total de Tareas</p>
+</div>
+<div class="stat-icon">
+<i class="fas fa-clipboard-list"></i>
+</div>
+</div>
+</div>
+<div class="stat-card">
+<div class="stat-content">
+<div class="stat-info">
+<h3 id="completedTasks">0</h3>
+<p>Completadas</p>
+</div>
+<div class="stat-icon">
+<i class="fas fa-check-circle"></i>
+</div>
+</div>
+</div>
+<div class="stat-card">
+<div class="stat-content">
+<div class="stat-info">
+<h3 id="pendingTasks">0</h3>
+<p>Pendientes</p>
+</div>
+<div class="stat-icon">
+<i class="fas fa-clock"></i>
+</div>
+</div>
+</div>
+<div class="stat-card">
+<div class="stat-content">
+<div class="stat-info">
+<h3 id="completionRate">0%</h3>
+<p>Tasa de Finalización</p>
+</div>
+<div class="stat-icon">
+<i class="fas fa-chart-pie"></i>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="progress-container">
+<div class="progress-label">
+<span>Progreso General</span>
+<span id="progressText">0% completado</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" id="progressFill" style="width: 0%"></div>
+</div>
+</div>
+
+
+
+<div class="main-content">
+<div class="tasks-section">
+<div class="tasks-header">
+<h2 class="tasks-title">
+<i class="fas fa-list"></i>
+Mis Tareas
+</h2>
+
+
+
+
+<div class="filter-controls">
+<button class="filter-btn active" data-filter="all">Todas</button>
+<button class="filter-btn" data-filter="pending">Pendientes</button>
+<button class="filter-btn" data-filter="completed">Completadas</button>
+<input type="text" class="search-box" id="searchBox" placeholder="Buscar tareas...">
+</div>
+</div>
+
+
+
+
+
+<div class="tasks-list" id="tasksList">
+<div class="empty-state">
+<i class="fas fa-tasks"></i>
+<h3>No hay tareas aún</h3>
+<p>Crea tu primera tarea</p>
+</div>
+</div>
+</div>
+
+
+<div class="task-form-card">
+<h3 class="form-title">
+<i class="fas fa-plus-circle"></i>
+Nueva Tarea
+</h3>
+
+
+
+
+<form id="taskForm">
+<div class="form-group">
+<label class="form-label">Título</label>
+<input type="text" class="form-input" id="taskTitle" required placeholder="Ingresa el título de la tarea">
+</div>
+<div class="form-group">
+<label class="form-label">Descripción</label>
+<textarea class="form-textarea" id="taskDescription" placeholder="Describe tu tarea (opcional)"></textarea>
+</div>
+<div class="form-group">
+<label class="form-label">Categoría</label>
+<select class="form-select" id="taskCategory">
+<option value="personal">Personal</option>
+<option value="trabajo">Trabajo</option>
+<option value="estudio">Estudio</option>
+<option value="hogar">Hogar</option>
+<option value="otro">Otro</option>
+</select>
+</div>
+
+
+
+<div class="form-group">
+<label class="form-label">Prioridad</label>
+<div class="priority-buttons">
+<button type="button" class="priority-btn low active" data-priority="low">Baja</button>
+<button type="button" class="priority-btn medium" data-priority="medium">Media</button>
+<button type="button" class="priority-btn high" data-priority="high">Alta</button>
+</div>
+</div>
+<div class="form-group">
+<label class="form-label">Fecha Límite</label>
+<input type="date" class="form-input" id="taskDueDate">
+</div>
+<button type="submit" class="form-submit">
+<i class="fas fa-plus"></i>
+Crear Tarea
+</button>
+</form>
+</div>
+</div>
+</div>
+
+
+<div class="modal" id="editModal">
+<div class="modal-content">
+<div class="modal-header">
+<h3 class="modal-title">Editar Tarea</h3>
+<button class="modal-close" id="closeModal">&times;</button>
+</div>
+<form id="editForm">
+<div class="form-group">
+<label class="form-label">Título</label>
+<input type="text" class="form-input" id="editTitle" required>
+</div>
+
+
+
+
+<div class="form-group">
+<label class="form-label">Descripción</label>
+<textarea class="form-textarea" id="editDescription"></textarea>
+</div>
+
+
+
+
+<div class="form-group">
+<label class="form-label">Categoría</label>
+<select class="form-select" id="editCategory">
+<option value="personal">Personal</option>
+<option value="trabajo">Trabajo</option>
+<option value="estudio">Estudio</option>
+<option value="hogar">Hogar</option>
+<option value="otro">Otro</option>
+</select>
+</div>
+
+
+
+
+
+<div class="form-group">
+<label class="form-label">Prioridad</label>
+<div class="priority-buttons" id="editPriorityButtons">
+<button type="button" class="priority-btn low" data-priority="low">Baja</button>
+<button type="button" class="priority-btn medium" data-priority="medium">Media</button>
+<button type="button" class="priority-btn high" data-priority="high">Alta</button>
+</div>
+</div>
+
+
+
+
+
+<div class="form-group">
+<label class="form-label">Fecha Límite</label>
+<input type="date" class="form-input" id="editDueDate">
+</div>
+<button type="submit" class="form-submit">
+<i class="fas fa-save"></i>
+Guardar Cambios
+</button>
+</form>
+</div>
+</div>
+
+
+
+ <script src="script.js"></script>
+</body>
+</html>
