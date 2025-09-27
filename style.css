@@ -6,31 +6,39 @@
 }
 
 :root {
-  /* Colors */
-  --primary-color: #6366f1;
-  --primary-dark: #4338ca;
-  --primary-light: #a5b4fc;
-  --secondary-color: #f1f5f9;
-  --accent-color: #10b981;
-  --danger-color: #ef4444;
-  --warning-color: #f59e0b;
-  --info-color: #3b82f6;
+  /* Primary Colors - Tonos profesionales azul-gris */
+  --primary-color: #4f5b93;
+  --primary-dark: #3d4773;
+  --primary-light: #7b8bc4;
+  --secondary-color: #f4f6f9;
+  --accent-color: #5a6c7d;
+  
+  /* Task Priority Colors - Independientes del tema */
+  --priority-low: #22c55e;
+  --priority-medium: #f59e0b;
+  --priority-high: #ef4444;
+  
+  /* System Colors */
+  --success-color: #10b981;
+  --danger-color: #dc2626;
+  --warning-color: #d97706;
+  --info-color: #2563eb;
   
   /* Text Colors */
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
-  --text-muted: #94a3b8;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
   --text-white: #ffffff;
   
   /* Background Colors */
   --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #f1f5f9;
-  --bg-overlay: rgba(15, 23, 42, 0.5);
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --bg-overlay: rgba(31, 41, 55, 0.5);
   
   /* Border & Shadow */
-  --border-color: #e2e8f0;
-  --border-light: #f1f5f9;
+  --border-color: #e5e7eb;
+  --border-light: #f3f4f6;
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -59,23 +67,28 @@
 
 /* Dark Theme Variables */
 [data-theme="dark"] {
-  --primary-color: #818cf8;
-  --primary-dark: #6366f1;
-  --primary-light: #a5b4fc;
-  --secondary-color: #1e293b;
-  --accent-color: #34d399;
+  --primary-color: #6b7db8;
+  --primary-dark: #4f5b93;
+  --primary-light: #8a9cd4;
+  --secondary-color: #1f2937;
+  --accent-color: #6b8096;
   
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
+  /* Las prioridades mantienen los mismos colores */
+  --priority-low: #22c55e;
+  --priority-medium: #f59e0b;
+  --priority-high: #ef4444;
   
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-tertiary: #334155;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-muted: #9ca3af;
+  
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --bg-tertiary: #374151;
   --bg-overlay: rgba(0, 0, 0, 0.7);
   
-  --border-color: #334155;
-  --border-light: #475569;
+  --border-color: #374151;
+  --border-light: #4b5563;
 }
 
 /* ===== BASE STYLES ===== */
@@ -121,7 +134,7 @@ body {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--warning-color), var(--danger-color));
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
 }
 
 .header-content {
@@ -223,19 +236,19 @@ body {
 }
 
 .stat-card.gradient-purple::before {
-  background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
 }
 
 .stat-card.gradient-green::before {
-  background: linear-gradient(90deg, #10b981, #34d399);
+  background: linear-gradient(90deg, var(--success-color), #34d399);
 }
 
 .stat-card.gradient-orange::before {
-  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+  background: linear-gradient(90deg, var(--warning-color), #fbbf24);
 }
 
 .stat-card.gradient-blue::before {
-  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  background: linear-gradient(90deg, var(--info-color), #60a5fa);
 }
 
 .stat-card:hover {
@@ -443,7 +456,7 @@ body {
 .search-box:focus {
   outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  box-shadow: 0 0 0 3px rgba(79, 91, 147, 0.1);
   background: var(--bg-primary);
 }
 
@@ -475,16 +488,17 @@ body {
   transition: all var(--transition-normal);
 }
 
+/* Colores de prioridad independientes */
 .task-item.priority-low::before {
-  background: var(--accent-color);
+  background: var(--priority-low);
 }
 
 .task-item.priority-medium::before {
-  background: var(--warning-color);
+  background: var(--priority-medium);
 }
 
 .task-item.priority-high::before {
-  background: var(--danger-color);
+  background: var(--priority-high);
 }
 
 .task-item:hover {
@@ -557,18 +571,19 @@ body {
   color: white;
 }
 
+/* Prioridades de tareas con colores independientes */
 .task-priority.low {
-  background: var(--accent-color);
+  background: var(--priority-low);
   color: white;
 }
 
 .task-priority.medium {
-  background: var(--warning-color);
+  background: var(--priority-medium);
   color: white;
 }
 
 .task-priority.high {
-  background: var(--danger-color);
+  background: var(--priority-high);
   color: white;
 }
 
@@ -632,7 +647,7 @@ body {
 }
 
 .task-btn.complete {
-  background: var(--accent-color);
+  background: var(--success-color);
   color: white;
 }
 
@@ -756,7 +771,7 @@ body {
 .form-textarea:focus {
   outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  box-shadow: 0 0 0 3px rgba(79, 91, 147, 0.1);
   background: var(--bg-primary);
 }
 
@@ -783,7 +798,7 @@ body {
 .form-input.error,
 .form-textarea.error {
   border-color: var(--danger-color);
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
 }
 
 .form-input.error + .input-error,
@@ -822,16 +837,17 @@ body {
   border-color: transparent;
 }
 
+/* Botones de prioridad con colores independientes */
 .priority-btn.low.active {
-  background: var(--accent-color);
+  background: var(--priority-low);
 }
 
 .priority-btn.medium.active {
-  background: var(--warning-color);
+  background: var(--priority-medium);
 }
 
 .priority-btn.high.active {
-  background: var(--danger-color);
+  background: var(--priority-high);
 }
 
 .form-submit {
@@ -1013,7 +1029,7 @@ body {
 }
 
 .toast.success::before {
-  background: var(--accent-color);
+  background: var(--success-color);
 }
 
 .toast.error::before {
@@ -1033,7 +1049,7 @@ body {
 }
 
 .toast.success .toast-icon {
-  color: var(--accent-color);
+  color: var(--success-color);
 }
 
 .toast.error .toast-icon {
